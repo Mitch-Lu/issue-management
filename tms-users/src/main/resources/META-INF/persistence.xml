@@ -3,6 +3,7 @@
 	<persistence-unit name="tms-users">
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 		<jta-data-source>jdbc/TMSXA</jta-data-source>
+		<class>com.xpo.ltl.entity.User</class>
 	
 		<properties>
 			<property name="hibernate.dialect" value="org.hibernate.dialect.Oracle12cDialect" />
