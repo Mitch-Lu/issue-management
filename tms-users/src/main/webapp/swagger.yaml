@@ -1,0 +1,104 @@
+---
+swagger: "2.0"
+info:
+  description: "Users REST Endpoints"
+  version: "v1"
+  title: "Users API"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "localhost:9082"
+basePath: "/tms-users/v1"
+tags:
+- name: "users"
+schemes:
+- "http"
+paths:
+  /users:
+    post:
+      tags:
+      - "users"
+      operationId: "add"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/json"
+      - "application/xml"
+      parameters: []
+      responses:
+        default:
+          description: "successful operation"
+  /users/{id}:
+    get:
+      tags:
+      - "users"
+      summary: "Get user by user ID"
+      description: ""
+      operationId: "get"
+      produces:
+      - "application/json"
+      - "application/xml"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/User"
+        400:
+          description: "Bad Request: Invalid input"
+        404:
+          description: "User NOT FOUND"
+    put:
+      tags:
+      - "users"
+      operationId: "update"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/json"
+      - "application/xml"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        default:
+          description: "successful operation"
+    delete:
+      tags:
+      - "users"
+      operationId: "remove"
+      produces:
+      - "application/json"
+      - "application/xml"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        default:
+          description: "successful operation"
+definitions:
+  User:
+    type: "object"
+    properties:
+      userId:
+        type: "string"
+      email:
+        type: "string"
+      firstName:
+        type: "string"
+      lastName:
+        type: "string"
+      password:
+        type: "string"
+      username:
+        type: "string"

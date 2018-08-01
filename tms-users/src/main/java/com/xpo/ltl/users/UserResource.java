@@ -22,8 +22,14 @@ import javax.ws.rs.core.UriInfo;
 
 import com.xpo.ltl.entity.User;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+
 @ApplicationScoped
 @Path("/users")
+@Api(value = "users")
 public class UserResource
 {
     @DefaultValue("v1")
@@ -45,6 +51,11 @@ public class UserResource
     @GET
     @Path("/{id}")
     @Produces({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
+	@ApiOperation(value = "Get user by user ID", response = User.class)
+    @ApiResponses({
+    	@ApiResponse(code = 400, message = "Bad Request: Invalid input"),
+    	@ApiResponse(code = 404, message = "User NOT FOUND")
+    })
 	public Response get(@PathParam("id") final String id)
 	{
 		final Optional<User> user = userService.get(id);

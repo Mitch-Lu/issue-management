@@ -22,10 +22,5 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 /.metadata/
-.recommenders/index/http___download_eclipse_org_recommenders_models_photon_/_1.tis
-.recommenders/index/http___download_eclipse_org_recommenders_models_photon_/_1.prx
-.recommenders/index/http___download_eclipse_org_recommenders_models_photon_/_1.nrm
-.recommenders/index/http___download_eclipse_org_recommenders_models_photon_/_1.frq
-.recommenders/index/http___download_eclipse_org_recommenders_models_photon_/_1.fdx
-.recommenders/index/http___download_eclipse_org_recommenders_models_photon_/_1.fdt
+/.recommenders
 tms-users/src/main/resources/rebel.xml
