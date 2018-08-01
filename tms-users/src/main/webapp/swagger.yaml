@@ -18,6 +18,8 @@ paths:
     post:
       tags:
       - "users"
+      summary: "Create user"
+      description: ""
       operationId: "add"
       consumes:
       - "application/json"
@@ -27,8 +29,14 @@ paths:
       - "application/xml"
       parameters: []
       responses:
-        default:
+        200:
           description: "successful operation"
+          schema:
+            $ref: "#/definitions/User"
+        201:
+          description: "User Added"
+        400:
+          description: "Bad Request: Invalid input"
   /users/{id}:
     get:
       tags:
@@ -56,6 +64,8 @@ paths:
     put:
       tags:
       - "users"
+      summary: "Update user"
+      description: ""
       operationId: "update"
       consumes:
       - "application/json"
@@ -69,11 +79,19 @@ paths:
         required: true
         type: "string"
       responses:
-        default:
-          description: "successful operation"
+        200:
+          description: "User Updated"
+          schema:
+            $ref: "#/definitions/User"
+        400:
+          description: "Bad Request: Invalid input"
+        404:
+          description: "User NOT FOUND"
     delete:
       tags:
       - "users"
+      summary: "Remove user by user ID"
+      description: ""
       operationId: "remove"
       produces:
       - "application/json"

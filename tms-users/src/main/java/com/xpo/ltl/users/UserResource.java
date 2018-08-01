@@ -42,10 +42,15 @@ public class UserResource
     @POST
 	@Produces({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
 	@Consumes({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
+	@ApiOperation(value = "Create user", response = User.class)
+	@ApiResponses({
+		@ApiResponse(code = 400, message = "Bad Request: Invalid input"),
+		@ApiResponse(code = 201, message = "User Added")
+	})
     public Response add(final User user, @Context final UriInfo uriInfo)
     {
     	userService.add(user);
-    	return Response.created(buildLocation(uriInfo, user.getUserId())).build();
+    	return Response.ok(user).build();
     }
 
     @GET
@@ -69,7 +74,13 @@ public class UserResource
     @Path("/{id}")
 	@Produces({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
 	@Consumes({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
-	public Response update(@PathParam("id") final String id, final User updateReqst)
+	@ApiOperation(value = "Update user", response = User.class)
+	@ApiResponses({
+		@ApiResponse(code = 400, message = "Bad Request: Invalid input"),
+		@ApiResponse(code = 404, message = "User NOT FOUND"),
+		@ApiResponse(code = 200, message = "User Updated")
+	})
+    public Response update(@PathParam("id") final String id, final User updateReqst)
 	{
 		updateReqst.setUserId(id);
 		final boolean updated = userService.update(updateReqst);
@@ -80,6 +91,7 @@ public class UserResource
     @DELETE
     @Path("/{id}")
     @Produces({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
+    @ApiOperation(value = "Remove user by user ID")
     public Response remove(@PathParam("id") final String id)
     {
     	userService.remove(id);
