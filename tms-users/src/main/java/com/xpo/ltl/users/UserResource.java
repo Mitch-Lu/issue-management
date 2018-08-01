@@ -1,6 +1,5 @@
 package com.xpo.ltl.users;
 
-import java.net.URI;
 import java.util.Optional;
 
 import javax.enterprise.context.ApplicationScoped;
@@ -96,9 +95,5 @@ public class UserResource
     {
     	userService.remove(id);
         return Response.ok().build();
-    }
-
-    private URI buildLocation(final UriInfo uriInfo, final String id) {
-        return uriInfo.getAbsolutePathBuilder().path(id).build();
     }
 }
