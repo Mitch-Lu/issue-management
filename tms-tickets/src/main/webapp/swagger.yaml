@@ -1,0 +1,13 @@
+---
+swagger: "2.0"
+info:
+  description: "Tickets REST Endpoints"
+  version: "v1"
+  title: "Tickets API"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "localhost:9082"
+basePath: "/tms-tickets/v1"
+schemes:
+- "http"
