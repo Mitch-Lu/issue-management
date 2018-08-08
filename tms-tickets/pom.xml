@@ -85,7 +85,7 @@
 					<apiSources>
 						<apiSource>
 							<springmvc>false</springmvc>
-							<locations>com.xpo.ltl.issues</locations>
+							<locations>com.xpo.ltl.tickets</locations>
 							<schemes>http</schemes>
 							<host>localhost:9082</host>
 							<basePath>/${project.build.finalName}/v1</basePath>

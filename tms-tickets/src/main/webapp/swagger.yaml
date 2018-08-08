@@ -9,5 +9,156 @@ info:
     url: "http://www.apache.org/licenses/LICENSE-2.0.html"
 host: "localhost:9082"
 basePath: "/tms-tickets/v1"
+tags:
+- name: "tickets"
 schemes:
 - "http"
+paths:
+  /tickets:
+    post:
+      tags:
+      - "tickets"
+      summary: "Create user"
+      description: ""
+      operationId: "add"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/json"
+      - "application/xml"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Ticket Model"
+        required: true
+        schema:
+          $ref: "#/definitions/Ticket"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Ticket"
+        201:
+          description: "User Added"
+        400:
+          description: "Bad Request: Invalid input"
+  /tickets/health:
+    get:
+      tags:
+      - "tickets"
+      summary: "API Health Check"
+      description: ""
+      operationId: "checkHealth"
+      produces:
+      - "application/json"
+      - "application/xml"
+      parameters: []
+      responses:
+        default:
+          description: "successful operation"
+  /tickets/{id}:
+    get:
+      tags:
+      - "tickets"
+      summary: "Get Ticket Info by Ticket ID"
+      description: ""
+      operationId: "get"
+      produces:
+      - "application/json"
+      - "application/xml"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Ticket"
+        400:
+          description: "Bad Request: Invalid input"
+        404:
+          description: "Ticket NOT FOUND"
+definitions:
+  Comment:
+    type: "object"
+    properties:
+      commentId:
+        type: "integer"
+        format: "int64"
+      crteById:
+        type: "string"
+      crteByName:
+        type: "string"
+      crteTmst:
+        type: "string"
+        format: "date-time"
+      text:
+        type: "string"
+      updtTmst:
+        type: "string"
+        format: "date-time"
+      ticket:
+        $ref: "#/definitions/Ticket"
+  Project:
+    type: "object"
+    properties:
+      projectId:
+        type: "string"
+      description:
+        type: "string"
+      projectName:
+        type: "string"
+      tickets:
+        type: "array"
+        uniqueItems: true
+        items:
+          $ref: "#/definitions/Ticket"
+  Ticket:
+    type: "object"
+    properties:
+      ticketId:
+        type: "integer"
+        format: "int64"
+      crteTmst:
+        type: "string"
+        format: "date-time"
+      description:
+        type: "string"
+      ticketTitle:
+        type: "string"
+      updtTmst:
+        type: "string"
+        format: "date-time"
+      project:
+        $ref: "#/definitions/Project"
+      user:
+        $ref: "#/definitions/User"
+      comments:
+        type: "array"
+        uniqueItems: true
+        items:
+          $ref: "#/definitions/Comment"
+  User:
+    type: "object"
+    properties:
+      userId:
+        type: "string"
+      email:
+        type: "string"
+      firstName:
+        type: "string"
+      lastName:
+        type: "string"
+      password:
+        type: "string"
+      username:
+        type: "string"
+      tickets:
+        type: "array"
+        uniqueItems: true
+        items:
+          $ref: "#/definitions/Ticket"
