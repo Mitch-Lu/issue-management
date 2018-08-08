@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+	<licenses>
+		<license>
+			<name>The Apache Software License, Version 2.0</name>
+			<url>https://raw.github.com/WASdev/ci.maven.tools/master/LICENSE</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.xpo.ltl</groupId>
+	<artifactId>tms-projects</artifactId>
+	<packaging>war</packaging>
+	<version>1.0.0-SNAPSHOT</version>
+
+	<properties>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<failOnMissingWebXml>false</failOnMissingWebXml>
+	</properties>
+
+	<name>tms-projects</name>
+	<url>http://maven.apache.org</url>
+
+	<dependencies>
+		<dependency>
+			<groupId>javax</groupId>
+			<artifactId>javaee-api</artifactId>
+			<version>8.0</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>5.2.17.Final</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.hibernate.javax.persistence</groupId>
+					<artifactId>hibernate-jpa-2.1-api</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.jboss.spec.javax.transaction</groupId>
+					<artifactId>jboss-transaction-api_1.2_spec</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>25.1-jre</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.7</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/io.swagger/swagger-annotations -->
+		<dependency>
+			<groupId>io.swagger</groupId>
+			<artifactId>swagger-annotations</artifactId>
+			<version>1.5.20</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<finalName>${project.name}</finalName>
+		<plugins>
+			<plugin>
+				<groupId>com.github.kongchen</groupId>
+				<artifactId>swagger-maven-plugin</artifactId>
+				<version>3.1.7</version>
+				<configuration>
+					<apiSources>
+						<apiSource>
+							<springmvc>false</springmvc>
+							<locations>com.xpo.ltl.projects</locations>
+							<schemes>http</schemes>
+							<host>localhost:9082</host>
+							<basePath>/${project.build.finalName}/v1</basePath>
+							<info>
+								<title>Projects API</title>
+								<version>v1</version>
+								<description>Projects REST Endpoints</description>
+								<license>
+									<url>http://www.apache.org/licenses/LICENSE-2.0.html</url>
+									<name>Apache 2.0</name>
+								</license>
+							</info>
+							<outputFormats>yaml</outputFormats>
+							<swaggerDirectory>${basedir}/src/main/webapp</swaggerDirectory>
+						</apiSource>
+					</apiSources>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>compile</phase>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>
