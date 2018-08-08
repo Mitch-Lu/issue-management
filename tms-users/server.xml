@@ -1,0 +1,45 @@
+<server description="JavaEE8">
+
+    <!-- Enable features -->
+    <featureManager>
+    	<feature>appSecurity-3.0</feature>
+		<feature>beanValidation-2.0</feature>
+		<feature>concurrent-1.0</feature>
+		<feature>ejbLite-3.2</feature>
+		<feature>javaMail-1.6</feature>
+		<feature>jaxrs-2.1</feature>
+		<feature>jpa-2.2</feature>
+		<feature>jsonb-1.0</feature>
+        <feature>localConnector-1.0</feature>
+		<feature>websocket-1.1</feature>
+	</featureManager>
+
+	<dataSource id="TMSXA" jndiName="jdbc/TMSXA" type="javax.sql.XADataSource">
+		<jdbcDriver libraryRef="OracleLib"/>
+		<properties.oracle URL="jdbc:oracle:thin:@localhost:32769:ORCLCDB" password="{xor}CxIMHg8Pbg==" user="TMSAPP1"/>
+		<connectionManager maxPoolSize="10" minPoolSize="1"/>
+	</dataSource>
+
+	<library id="OracleLib">
+		<file name="C:/liberty/workspace/liberty/Servers_Files/opt/lib_files/JDBCDrivers/oracle/ojdbc7.jar"/>
+	</library>
+
+    <!-- To access this server from a remote client add a host attribute to the following element, e.g. host="*" -->
+    <httpEndpoint host="localhost" httpPort="9082" httpsPort="9443" id="defaultHttpEndpoint"/>
+
+    <!-- Automatically expand WAR files and EAR files -->
+    <applicationManager autoExpand="true"/>
+
+
+    <applicationMonitor updateTrigger="mbean"/>
+
+    <webApplication contextRoot="tms-users" id="tms-users" location="tms-users.war" name="tms-users">
+    	 <classloader>
+		    <privateLibrary>
+		      <folder dir="C:/liberty/workspace/liberty/Servers_Files/opt/lib_files/app_properties/libC"/>
+		    </privateLibrary>
+		</classloader>
+    </webApplication>
+
+    <webApplication id="tms-tickets" location="tms-tickets.war" name="tms-tickets"/>
+</server>

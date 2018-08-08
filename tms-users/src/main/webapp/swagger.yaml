@@ -37,6 +37,20 @@ paths:
           description: "User Added"
         400:
           description: "Bad Request: Invalid input"
+  /users/health:
+    get:
+      tags:
+      - "users"
+      summary: "API Health Check"
+      description: ""
+      operationId: "checkHealth"
+      produces:
+      - "application/json"
+      - "application/xml"
+      parameters: []
+      responses:
+        default:
+          description: "successful operation"
   /users/{id}:
     get:
       tags:

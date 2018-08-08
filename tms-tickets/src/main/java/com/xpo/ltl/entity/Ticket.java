@@ -13,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -26,7 +27,18 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name="TICKETS")
-@NamedQuery(name="Ticket.findAll", query="SELECT t FROM Ticket t")
+@NamedQueries({
+	@NamedQuery(name="Ticket.findAll", query="SELECT t FROM Ticket t"),
+	@NamedQuery(
+		name="Ticket.findById",
+		query=
+			"SELECT DISTINCT t1 FROM Ticket t1 " +
+			"JOIN FETCH t1.project " +
+			"JOIN FETCH t1.user " +
+			"LEFT JOIN FETCH t1.comments " +
+			"WHERE t1.ticketId = :ticketId "
+	)
+})
 public class Ticket implements Serializable
 {
 	private static final long serialVersionUID = 1L;

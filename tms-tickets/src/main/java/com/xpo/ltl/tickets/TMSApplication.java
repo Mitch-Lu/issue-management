@@ -1,4 +1,4 @@
-package com.xpo.ltl.users;
+package com.xpo.ltl.tickets;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
