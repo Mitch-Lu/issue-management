@@ -27,7 +27,13 @@ paths:
       produces:
       - "application/json"
       - "application/xml"
-      parameters: []
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "User Model"
+        required: true
+        schema:
+          $ref: "#/definitions/User"
       responses:
         200:
           description: "successful operation"

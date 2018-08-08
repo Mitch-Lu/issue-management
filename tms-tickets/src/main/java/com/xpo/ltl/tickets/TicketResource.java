@@ -21,6 +21,7 @@ import com.xpo.ltl.entity.Ticket;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
@@ -53,7 +54,9 @@ public class TicketResource
 		@ApiResponse(code = 400, message = "Bad Request: Invalid input"),
 		@ApiResponse(code = 201, message = "User Added")
 	})
-    public Response add(final Ticket ticket, @Context final UriInfo uriInfo)
+    public Response add(
+    	@ApiParam(value = "Ticket Model", required = true) final Ticket ticket,
+    	@Context final UriInfo uriInfo)
     {
     	ticketService.add(ticket);
     	return Response.ok(ticket).build();

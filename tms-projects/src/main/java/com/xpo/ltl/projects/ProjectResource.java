@@ -18,6 +18,7 @@ import com.xpo.ltl.entity.Project;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
@@ -50,7 +51,9 @@ public class ProjectResource
 		@ApiResponse(code = 400, message = "Bad Request: Invalid input"),
 		@ApiResponse(code = 201, message = "Project Added")
 	})
-    public Response add(final Project project, @Context final UriInfo uriInfo)
+    public Response add(
+    	@ApiParam(value = "Project Model", required = true) final Project project,
+    	@Context final UriInfo uriInfo)
     {
     	projectService.add(project);
     	return Response.ok(project).build();

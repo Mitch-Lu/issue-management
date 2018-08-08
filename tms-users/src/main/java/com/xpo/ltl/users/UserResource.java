@@ -23,6 +23,7 @@ import com.xpo.ltl.entity.User;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
@@ -55,7 +56,9 @@ public class UserResource
 		@ApiResponse(code = 400, message = "Bad Request: Invalid input"),
 		@ApiResponse(code = 201, message = "User Added")
 	})
-    public Response add(final User user, @Context final UriInfo uriInfo)
+    public Response add(
+    	@ApiParam(value = "User Model", required = true) final User user,
+    	@Context final UriInfo uriInfo)
     {
     	userService.add(user);
     	return Response.ok(user).build();
