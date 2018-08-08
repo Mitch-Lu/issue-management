@@ -18,7 +18,7 @@ paths:
     post:
       tags:
       - "tickets"
-      summary: "Create user"
+      summary: "Create Ticket"
       description: ""
       operationId: "add"
       consumes:
@@ -40,7 +40,7 @@ paths:
           schema:
             $ref: "#/definitions/Ticket"
         201:
-          description: "User Added"
+          description: "Ticket Added"
         400:
           description: "Bad Request: Invalid input"
   /tickets/health:

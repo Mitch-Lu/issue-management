@@ -49,10 +49,10 @@ public class TicketResource
     @POST
 	@Produces({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
 	@Consumes({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
-	@ApiOperation(value = "Create user", response = Ticket.class)
+	@ApiOperation(value = "Create Ticket", response = Ticket.class)
 	@ApiResponses({
 		@ApiResponse(code = 400, message = "Bad Request: Invalid input"),
-		@ApiResponse(code = 201, message = "User Added")
+		@ApiResponse(code = 201, message = "Ticket Added")
 	})
     public Response add(
     	@ApiParam(value = "Ticket Model", required = true) final Ticket ticket,
