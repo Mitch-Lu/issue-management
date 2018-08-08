@@ -6,6 +6,7 @@
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/.apt_generated"/>
         <wb-resource deploy-path="/" source-path="/src/test/java"/>
         <wb-resource deploy-path="/" source-path="/.apt_generated_tests"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
         <property name="context-root" value="tms-tickets"/>
         <property name="java-output-path" value="/tms-tickets/target/classes"/>
     </wb-module>
