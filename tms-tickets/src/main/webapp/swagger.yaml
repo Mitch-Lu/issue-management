@@ -10,11 +10,46 @@ info:
 host: "localhost:9082"
 basePath: "/tms-tickets/v1"
 tags:
+- name: "activity"
 - name: "tickets"
 schemes:
 - "http"
 paths:
+  /activity:
+    get:
+      tags:
+      - "activity"
+      summary: "SSE Subscribtion"
+      description: ""
+      operationId: "subscribe"
+      produces:
+      - "text/event-stream"
+      parameters: []
+      responses:
+        default:
+          description: "successful operation"
   /tickets:
+    get:
+      tags:
+      - "tickets"
+      summary: "List All Ticket Info"
+      description: ""
+      operationId: "listAll"
+      produces:
+      - "application/json"
+      - "application/xml"
+      parameters: []
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Ticket"
+        400:
+          description: "Bad Request: Invalid input"
+        404:
+          description: "Ticket NOT FOUND"
     post:
       tags:
       - "tickets"

@@ -28,7 +28,10 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name="TICKETS")
 @NamedQueries({
-	@NamedQuery(name="Ticket.findAll", query="SELECT t FROM Ticket t"),
+	@NamedQuery(
+		name="Ticket.findAll",
+		query="SELECT t FROM Ticket t"
+	),
 	@NamedQuery(
 		name="Ticket.findById",
 		query=
@@ -37,6 +40,12 @@ import javax.persistence.TemporalType;
 			"JOIN FETCH t1.user " +
 			"LEFT JOIN FETCH t1.comments " +
 			"WHERE t1.ticketId = :ticketId "
+	),
+	@NamedQuery(
+		name="Ticket.findByUserId",
+		query=
+			"SELECT t1 FROM Ticket t1 " +
+			"WHERE t1.user.userId = :userId "
 	)
 })
 public class Ticket implements Serializable

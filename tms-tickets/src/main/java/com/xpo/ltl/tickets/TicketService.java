@@ -1,6 +1,7 @@
 package com.xpo.ltl.tickets;
 
 import java.util.Calendar;
+import java.util.List;
 import java.util.Optional;
 
 import javax.ejb.LocalBean;
@@ -62,5 +63,29 @@ public class TicketService
 			.setParameter("ticketId", ticketId)
 			.getResultStream()
 			.findFirst();
+	}
+
+	public List<Ticket> listAll()
+	{
+		return entityManager
+			.createNamedQuery("Ticket.findAll", Ticket.class)
+			.getResultList();
+	}
+
+	public List<Ticket> listByUserId(final String userId)
+	{
+		return entityManager
+			.createNamedQuery("Ticket.findByUserId", Ticket.class)
+			.setParameter("userId", userId)
+			.getResultList();
+	}
+
+	public long getCountByUserId(final String userId)
+	{
+		return entityManager
+			.createNamedQuery("Ticket.findByUserId", Ticket.class)
+			.setParameter("userId", userId)
+			.getResultStream()
+			.count();
 	}
 }
