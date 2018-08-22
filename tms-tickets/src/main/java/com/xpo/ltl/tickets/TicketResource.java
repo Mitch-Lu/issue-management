@@ -65,10 +65,6 @@ public class TicketResource
     @GET
     @Produces({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
 	@ApiOperation(value = "List All Ticket Info", response = Ticket.class, responseContainer="List")
-    @ApiResponses({
-    	@ApiResponse(code = 400, message = "Bad Request: Invalid input"),
-    	@ApiResponse(code = 404, message = "Ticket NOT FOUND")
-    })
 	public Response listAll()
 	{
     	return Response.ok(ticketService.listAll()).build();
