@@ -46,10 +46,6 @@ paths:
             type: "array"
             items:
               $ref: "#/definitions/Ticket"
-        400:
-          description: "Bad Request: Invalid input"
-        404:
-          description: "Ticket NOT FOUND"
     post:
       tags:
       - "tickets"
