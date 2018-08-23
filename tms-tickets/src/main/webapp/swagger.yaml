@@ -45,7 +45,7 @@ paths:
           schema:
             type: "array"
             items:
-              $ref: "#/definitions/Ticket"
+              $ref: "#/definitions/TicketInfoResp"
     post:
       tags:
       - "tickets"
@@ -66,10 +66,6 @@ paths:
         schema:
           $ref: "#/definitions/Ticket"
       responses:
-        200:
-          description: "successful operation"
-          schema:
-            $ref: "#/definitions/Ticket"
         201:
           description: "Ticket Added"
         400:
@@ -134,6 +130,24 @@ definitions:
         format: "date-time"
       ticket:
         $ref: "#/definitions/Ticket"
+  CommentDTO:
+    type: "object"
+    properties:
+      commentId:
+        type: "integer"
+        format: "int64"
+      crteById:
+        type: "string"
+      crteByName:
+        type: "string"
+      crteTmst:
+        type: "string"
+        format: "date-time"
+      text:
+        type: "string"
+      updtTmst:
+        type: "string"
+        format: "date-time"
   Project:
     type: "object"
     properties:
@@ -148,6 +162,15 @@ definitions:
         uniqueItems: true
         items:
           $ref: "#/definitions/Ticket"
+  ProjectDTO:
+    type: "object"
+    properties:
+      projectId:
+        type: "string"
+      description:
+        type: "string"
+      projectName:
+        type: "string"
   Ticket:
     type: "object"
     properties:
@@ -173,6 +196,30 @@ definitions:
         uniqueItems: true
         items:
           $ref: "#/definitions/Comment"
+  TicketInfoResp:
+    type: "object"
+    properties:
+      ticketId:
+        type: "integer"
+        format: "int64"
+      crteTmst:
+        type: "string"
+        format: "date-time"
+      description:
+        type: "string"
+      ticketTitle:
+        type: "string"
+      updtTmst:
+        type: "string"
+        format: "date-time"
+      project:
+        $ref: "#/definitions/ProjectDTO"
+      user:
+        $ref: "#/definitions/UserDTO"
+      comments:
+        type: "array"
+        items:
+          $ref: "#/definitions/CommentDTO"
   User:
     type: "object"
     properties:
@@ -193,3 +240,18 @@ definitions:
         uniqueItems: true
         items:
           $ref: "#/definitions/Ticket"
+  UserDTO:
+    type: "object"
+    properties:
+      userId:
+        type: "string"
+      email:
+        type: "string"
+      firstName:
+        type: "string"
+      lastName:
+        type: "string"
+      password:
+        type: "string"
+      username:
+        type: "string"

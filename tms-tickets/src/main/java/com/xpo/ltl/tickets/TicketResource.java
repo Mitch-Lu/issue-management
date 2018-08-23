@@ -17,6 +17,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
+import com.xpo.ltl.dto.TicketInfoResp;
 import com.xpo.ltl.entity.Ticket;
 
 import io.swagger.annotations.Api;
@@ -49,7 +50,7 @@ public class TicketResource
     @POST
 	@Produces({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
 	@Consumes({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
-	@ApiOperation(value = "Create Ticket", response = Ticket.class)
+	@ApiOperation(value = "Create Ticket")
 	@ApiResponses({
 		@ApiResponse(code = 400, message = "Bad Request: Invalid input"),
 		@ApiResponse(code = 201, message = "Ticket Added")
@@ -59,12 +60,12 @@ public class TicketResource
     	@Context final UriInfo uriInfo)
     {
     	ticketService.add(ticket);
-    	return Response.ok(ticket).build();
+    	return Response.ok().build();
     }
 
     @GET
     @Produces({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
-	@ApiOperation(value = "List All Ticket Info", response = Ticket.class, responseContainer="List")
+	@ApiOperation(value = "List All Ticket Info", response = TicketInfoResp.class, responseContainer="List")
 	public Response listAll()
 	{
     	return Response.ok(ticketService.listAll()).build();

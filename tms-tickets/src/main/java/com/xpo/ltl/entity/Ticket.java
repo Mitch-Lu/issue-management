@@ -16,6 +16,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -30,7 +31,11 @@ import javax.persistence.TemporalType;
 @NamedQueries({
 	@NamedQuery(
 		name="Ticket.findAll",
-		query="SELECT t FROM Ticket t"
+		query=
+			"SELECT DISTINCT t FROM Ticket t " +
+			"JOIN FETCH t.project " +
+			"JOIN FETCH t.user " +
+			"LEFT JOIN FETCH t.comments "
 	),
 	@NamedQuery(
 		name="Ticket.findById",
@@ -65,7 +70,8 @@ public class Ticket implements Serializable
 
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@SequenceGenerator(name="TICKET_ID_GENERATOR", sequenceName="TICKET_SEQ")
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="TICKET_ID_GENERATOR")
 	@Column(name="TICKET_ID")
 	public long getTicketId() {
 		return this.ticketId;
