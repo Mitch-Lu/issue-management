@@ -1,4 +1,4 @@
-package com.xpo.ltl.filters;
+package com.xpo.ltl.filter;
 
 import java.io.IOException;
 
