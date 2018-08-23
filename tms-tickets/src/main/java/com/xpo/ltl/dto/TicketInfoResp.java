@@ -1,7 +1,6 @@
 package com.xpo.ltl.dto;
 
 import java.io.Serializable;
-import java.util.Calendar;
 import java.util.List;
 
 public class TicketInfoResp implements Serializable
@@ -9,10 +8,10 @@ public class TicketInfoResp implements Serializable
 	private static final long serialVersionUID = 1L;
 
 	private long ticketId;
-	private Calendar crteTmst;
+	private long crteTmst;
 	private String description;
 	private String ticketTitle;
-	private Calendar updtTmst;
+	private long updtTmst;
 
 	private ProjectDTO project;
 	private UserDTO user;
@@ -28,12 +27,12 @@ public class TicketInfoResp implements Serializable
 		this.ticketId = ticketId;
 	}
 
-	public Calendar getCrteTmst()
+	public long getCrteTmst()
 	{
 		return crteTmst;
 	}
 
-	public void setCrteTmst(final Calendar crteTmst)
+	public void setCrteTmst(final long crteTmst)
 	{
 		this.crteTmst = crteTmst;
 	}
@@ -58,12 +57,12 @@ public class TicketInfoResp implements Serializable
 		this.ticketTitle = ticketTitle;
 	}
 
-	public Calendar getUpdtTmst()
+	public long getUpdtTmst()
 	{
 		return updtTmst;
 	}
 
-	public void setUpdtTmst(final Calendar updtTmst)
+	public void setUpdtTmst(final long updtTmst)
 	{
 		this.updtTmst = updtTmst;
 	}

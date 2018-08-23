@@ -18,10 +18,10 @@ public final class TicketUtils
 		final Project projectEntity = ticket.getProject();
 
 		resp.setTicketId(ticket.getTicketId());
-		resp.setCrteTmst(ticket.getCrteTmst());
+		resp.setCrteTmst(ticket.getCrteTmst().getTimeInMillis());
 		resp.setDescription(ticket.getDescription());
 		resp.setTicketTitle(projectEntity.getProjectId() + "-" + ticket.getTicketId());
-		resp.setUpdtTmst(ticket.getUpdtTmst());
+		resp.setUpdtTmst(ticket.getUpdtTmst().getTimeInMillis());
 
 		final ProjectDTO projectDTO = new ProjectDTO();
 		projectDTO.setProjectId(projectEntity.getProjectId());
@@ -50,9 +50,9 @@ public final class TicketUtils
 		commentDTO.setCommentId(comment.getCommentId());
 		commentDTO.setCrteById(comment.getCrteById());
 		commentDTO.setCrteByName(comment.getCrteByName());
-		commentDTO.setCrteTmst(comment.getCrteTmst());
+		commentDTO.setCrteTmst(comment.getCrteTmst().getTimeInMillis());
 		commentDTO.setText(comment.getText());
-		commentDTO.setUpdtTmst(comment.getUpdtTmst());
+		commentDTO.setUpdtTmst(comment.getUpdtTmst().getTimeInMillis());
 
 		return commentDTO;
 	}

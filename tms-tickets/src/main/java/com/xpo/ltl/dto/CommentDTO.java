@@ -1,7 +1,6 @@
 package com.xpo.ltl.dto;
 
 import java.io.Serializable;
-import java.util.Calendar;
 
 public class CommentDTO implements Serializable
 {
@@ -10,9 +9,9 @@ public class CommentDTO implements Serializable
 	private long commentId;
 	private String crteById;
 	private String crteByName;
-	private Calendar crteTmst;
+	private long crteTmst;
 	private String text;
-	private Calendar updtTmst;
+	private long updtTmst;
 
 	public long getCommentId()
 	{
@@ -44,12 +43,12 @@ public class CommentDTO implements Serializable
 		this.crteByName = crteByName;
 	}
 
-	public Calendar getCrteTmst()
+	public long getCrteTmst()
 	{
 		return crteTmst;
 	}
 
-	public void setCrteTmst(final Calendar crteTmst)
+	public void setCrteTmst(final long crteTmst)
 	{
 		this.crteTmst = crteTmst;
 	}
@@ -64,12 +63,12 @@ public class CommentDTO implements Serializable
 		this.text = text;
 	}
 
-	public Calendar getUpdtTmst()
+	public long getUpdtTmst()
 	{
 		return updtTmst;
 	}
 
-	public void setUpdtTmst(final Calendar updtTmst)
+	public void setUpdtTmst(final long updtTmst)
 	{
 		this.updtTmst = updtTmst;
 	}
