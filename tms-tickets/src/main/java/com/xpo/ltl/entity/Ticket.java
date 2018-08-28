@@ -35,7 +35,8 @@ import javax.persistence.TemporalType;
 			"SELECT DISTINCT t FROM Ticket t " +
 			"JOIN FETCH t.project " +
 			"JOIN FETCH t.user " +
-			"LEFT JOIN FETCH t.comments "
+			"LEFT JOIN FETCH t.comments " +
+			"ORDER BY t.crteTmst DESC"
 	),
 	@NamedQuery(
 		name="Ticket.findById",

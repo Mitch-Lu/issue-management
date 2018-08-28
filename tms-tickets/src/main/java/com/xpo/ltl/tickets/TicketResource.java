@@ -4,6 +4,8 @@ import java.util.Optional;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.event.Event;
+import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
@@ -17,6 +19,8 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
+import com.xpo.ltl.constant.EventTypeEnum;
+import com.xpo.ltl.dto.TicketEvent;
 import com.xpo.ltl.dto.TicketInfoResp;
 import com.xpo.ltl.entity.Ticket;
 
@@ -37,6 +41,9 @@ public class TicketResource
 
     @EJB
     private TicketService ticketService;
+
+    @Inject
+    private Event<TicketEvent> ticketEvt;
 
     @GET
     @Path("/health")
@@ -60,6 +67,7 @@ public class TicketResource
     	@Context final UriInfo uriInfo)
     {
     	ticketService.add(ticket);
+    	ticketEvt.fire(new TicketEvent(EventTypeEnum.ADD, "Q6190"));
     	return Response.ok().build();
     }
 
