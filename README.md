@@ -16,3 +16,5 @@
 - Maven 3.5
 - Oracle DB 12c
 - Docker 18
+- Angular UI [HERE](https://github.com/Mitch-Lu/tms-ui)
+
