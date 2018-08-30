@@ -45,6 +45,9 @@ public class TicketResource
     @Inject
     private Event<TicketEvent> ticketEvt;
 
+    //@Inject
+    //private LoggedInUser loggedInUser;
+
     @GET
     @Path("/health")
 	@Produces({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
