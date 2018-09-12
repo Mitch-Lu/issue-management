@@ -2,6 +2,7 @@ package com.xpo.ltl.projects;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.ApplicationScoped;
+import javax.json.bind.JsonbBuilder;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
@@ -38,9 +39,9 @@ public class ProjectResource
     @Path("/health")
 	@Produces({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
 	@ApiOperation(value = "API Health Check")
-	public Response checkHealth()
+	public Response checkHealth(@HeaderParam("x-jwt-assertion") final String xJwtAssertion)
 	{
-		return Response.ok().build();
+		return Response.ok(JsonbBuilder.create().toJson(xJwtAssertion)).build();
 	}
 
     @POST
