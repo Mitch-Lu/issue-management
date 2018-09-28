@@ -2,8 +2,6 @@ package com.xpo.ltl.tickets;
 
 import javax.annotation.PreDestroy;
 import javax.ejb.Singleton;
-import javax.ejb.Startup;
-import javax.enterprise.event.Observes;
 import javax.json.bind.JsonbBuilder;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -20,7 +18,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
 @Singleton
-@Startup
+//@Startup
 @Path("/activity")
 @Api(value = "activity")
 public class TicketSSE
@@ -40,7 +38,7 @@ public class TicketSSE
         this.broadcaster.register(eventSink);
     }
 
-    public void observeEvent(@Observes final TicketEvent event)
+    public void observeEvent(final TicketEvent event)
     {
         if(this.broadcaster != null) {
             final String jsonEvt = JsonbBuilder.create().toJson(event);
